@@ -1,8 +1,8 @@
-from setuptools import find_packages, setup
+from setuptools import setup
 
 setup(
     name='ibm_recommend',
-    packages=find_packages(),
+    packages=["ibm_recommend"],
     version='0.1.0',
     description='Recommendations with IBM',
     author='Marc Vitalis',
