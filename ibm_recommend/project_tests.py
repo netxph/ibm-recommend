@@ -28,9 +28,9 @@ def sol_1_test(sol_1_dict):
                 
                 
 def sol_2_test(top_articles, data):
-    top_5 = top_articles(5, data)
-    top_10 = top_articles(10, data)
-    top_20 = top_articles(20, data)
+    top_5 = top_articles(data, 5)
+    top_10 = top_articles(data, 10)
+    top_20 = top_articles(data, 20)
     
     checks = ['top_5', 'top_10', 'top_20']
     for idx, file in enumerate(checks):
