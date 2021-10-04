@@ -1,5 +1,47 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+
+def get_user_articles(data, user_id):
+    '''
+    INPUT:
+    data - (pandas dataframe) matrix of users by articles: 
+                1's when a user has interacted with an article, 0 otherwise
+    user_id - (int) a user id
+    
+    OUTPUT:
+    article_ids - (list) a list of the article ids seen by the user
+    article_names - (list) a list of article names associated with the list of article ids 
+                    (this is identified by the doc_full_name column in df_content)
+    
+    Description:
+    Provides a list of the article_ids and article titles that have been seen by a user
+    '''
+    num_interactions = data[["user_id", "article_id", "title"]].groupby("article_id").agg(count = ("user_id", "count")).reset_index()
+
+    user_articles = data[["user_id", "article_id", "title"]][data.user_id == user_id].drop_duplicates()
+
+    sorted_articles = pd.merge(user_articles, num_interactions, on="article_id").sort_values(by="count", ascending=False)
+    
+
+    return sorted_articles.article_id.tolist(), sorted_articles.title.tolist() # return the ids and names
+
+def create_user_item_matrix(data):
+    '''
+    INPUT:
+    data - pandas dataframe with article_id, title, user_id columns
+    
+    OUTPUT:
+    user_item - user item matrix 
+    
+    Description:
+    Return a matrix with user ids as rows and article ids on the columns with 1 values where a user interacted with 
+    an article and a 0 otherwise
+    '''
+
+    user_item = data[["user_id", "article_id"]].groupby(by=["user_id", "article_id"]).agg(lambda x: 1).unstack(fill_value = 0)
+    
+    return user_item
 
 def fit_transform(s, u, vt, use_round = True):
     '''
