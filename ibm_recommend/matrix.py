@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def fit_transform(s, u, vt):
+def fit_transform(s, u, vt, use_round = True):
     '''
     INPUT
     s - singular values
@@ -12,7 +12,9 @@ def fit_transform(s, u, vt):
     user_item_est - a user-item matrix of the estimated ratings
     '''
 
-    return np.around(np.dot(np.dot(u, s), vt))
+    result = np.dot(np.dot(u, s), vt)
+
+    return np.around(result) if use_round else result
 
 def calculate_error(df_true, df_pred):
     '''
