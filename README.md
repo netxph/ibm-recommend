@@ -1,10 +1,10 @@
 # ibm-recommend
-Data Analysis and Articles Recommendations with IBM
+Data Analysis and Article Recommendations with IBM
 
 ### Table of contents
 1. [Installation](#installation)
 2. [Project Motivation](#motivation)
-3. [File Descriptions](#files)
+3. [File Descriptions](#file-rec)
 4. [Results](#results)
 5. [Licensing, Authors, and Acknowledgements](#licensing)
 
@@ -50,7 +50,7 @@ recommender.recommend(6000)
 This projects aim to analyze the current articles and user interactions with the datasets provided by IBM. There could be an opportunity here to further improve or increase the interactions of users by providing recommendations. We are going to walk you through the data and recommendations technique analysis.
 
 
-## File Descriptions <a name="files"></a>
+## File Descriptions <a name="file-rec"></a>
 
 There 2 notebooks in this project. The `01 - Data Wrangling.ipynb` contains basic cleaning while `02 - Data and Recommendation Analysis` contains the analysis needed to answer the questions. Utility python and recommender codes are located at `ibm_recommend`.
 
