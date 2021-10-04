@@ -1,4 +1,6 @@
 class BaseRecommender():
+    '''The Recommender Interface
+    '''
 
     def __init__(self, name):
         self.name = name

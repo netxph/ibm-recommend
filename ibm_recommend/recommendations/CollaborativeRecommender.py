@@ -5,6 +5,8 @@ from ibm_recommend.recommendations import BaseRecommender
 from ibm_recommend.matrix import create_user_item_matrix, get_user_articles
 
 class CollaborativeRecommender(BaseRecommender):
+    """Collaborative Filtering Recommender
+    """
 
     def __init__(self):
         super().__init__("collaborative")
@@ -32,13 +34,41 @@ class CollaborativeRecommender(BaseRecommender):
 
 
     def fit(self, X):
+        '''
+        Fits the model to the data.
+
+        INPUT:
+            X: pandas dataframe
+        '''
+
         self.interactions = X
         self.matrix = create_user_item_matrix(X)
 
     def can_recommend(self, user_id) -> bool:
+        '''
+        Based on data, can the model recommend items for the user.
+
+        INPUT:
+            user_id: user to check
+
+        OUTPUT:
+            bool: True if can recommend, False otherwise
+        '''
+
         return user_id in self.interactions.user_id.values
 
     def recommend(self, user_id, rec_num = 10) -> list:
+        '''
+        Provides recommendations for the user.
+
+        INPUT:
+            user_id: user to recommend for
+            rec_num: number of recommendations to return
+
+        OUTPUT:
+            list: list of recommendations
+        '''
+
         recs = []
         user_articles = get_user_articles(self.interactions, user_id)[0]
         similar_users = self._get_top_sorted_users(user_id)

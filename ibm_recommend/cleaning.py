@@ -1,4 +1,11 @@
 def email_mapper(email):
+    '''
+    Maps email to a unique id
+
+    INPUT:
+    email: hash string
+    '''
+
     coded_dict = dict()
     cter = 1
     email_encoded = []
